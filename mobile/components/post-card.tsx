@@ -1,15 +1,9 @@
-import {
-  View,
-  Text,
-  Image,
-  Alert,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Image, Alert, TouchableOpacity } from "react-native";
 import React from "react";
 import { Post, User } from "@/types";
 import { formatDate, formatNumber } from "@/utils/formatters";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import { Link } from "expo-router"; // 1. Import Link from expo-router
 
 interface PostCardProps {
   post: Post;
@@ -29,7 +23,6 @@ const PostCard = ({
   onComment,
 }: PostCardProps) => {
   if (!post?.user || !currentUser) {
-    // You can also return a loading spinner or a placeholder here
     return null;
   }
   const isOwnPost = post.user._id === currentUser._id;
@@ -48,21 +41,43 @@ const PostCard = ({
   return (
     <View className="border-b border-gray-100 bg-white">
       <View className="flex-row p-4">
-        <Image
-          source={{ uri: post.user.profilePicture || "" }}
-          className="w-12 h-12 rounded-full mr-3"
-        />
+        {/* 2. Wrap the profile picture with a Link */}
+        <Link
+          href={{
+            pathname: "/user/[username]",
+            params: { username: post.user.username },
+          }}
+          asChild
+        >
+          <TouchableOpacity>
+            <Image
+              source={{ uri: post.user.profilePicture || "" }}
+              className="w-12 h-12 rounded-full mr-3"
+            />
+          </TouchableOpacity>
+        </Link>
 
         <View className="flex-1">
           <View className="flex-row items-center justify-between mb-1">
-            <View className="flex-row items-center">
-              <Text className="font-bold text-gray-900 mr-1">
-                {post.user.firstName} {post.user.lastName}
-              </Text>
-              <Text className="text-gray-500 ml-1">
-                @{post.user.username} • {formatDate(post.createdAt)}
-              </Text>
-            </View>
+            {/* 3. Wrap the user's name and info with a Link */}
+            <Link
+              href={{
+                pathname: "/user/[username]",
+                params: { username: post.user.username },
+              }}
+              asChild
+            >
+              <TouchableOpacity>
+                <View className="flex-row items-center">
+                  <Text className="font-bold text-gray-900 mr-1">
+                    {post.user.firstName} {post.user.lastName}
+                  </Text>
+                  <Text className="text-gray-500 ml-1">
+                    @{post.user.username} • {formatDate(post.createdAt)}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Link>
             {isOwnPost && (
               <TouchableOpacity onPress={handleDelete}>
                 <Feather name="trash" size={20} color="#657786" />
@@ -84,6 +99,7 @@ const PostCard = ({
             />
           )}
 
+          {/* Action buttons remain the same */}
           <View className="flex-row justify-between max-w-xs">
             <TouchableOpacity
               className="flex-row items-center"
