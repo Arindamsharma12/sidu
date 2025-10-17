@@ -36,11 +36,7 @@ const UserProfileScreen = () => {
     error,
     refetch: refetchProfile,
   } = useUserProfile(username);
-  const {
-    posts: userPosts,
-    refetch: refetchPosts,
-    isLoading: isRefetching,
-  } = usePosts(username);
+  const { refetch: refetchPosts, isLoading: isRefetching } = usePosts(username);
   const { currentUser } = useCurrentUser(); // Get the logged-in user
 
   // Setup React Query for the follow/unfollow mutation

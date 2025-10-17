@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
-import React, { use } from "react";
+import React from "react";
 import {
   SafeAreaView,
   useSafeAreaInsets,
