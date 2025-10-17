@@ -1,15 +1,14 @@
+import { useCreatePost } from "@/hooks/useCreatePost";
+import { useUser } from "@clerk/clerk-expo";
+import { Feather } from "@expo/vector-icons";
 import {
   View,
-  Image,
   Text,
+  Image,
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import React from "react";
-import { useCreatePost } from "@/hooks/useCreatePost";
-import { useUser } from "@clerk/clerk-expo";
-import { Feather } from "@expo/vector-icons";
 
 const PostComposer = () => {
   const {
@@ -32,7 +31,7 @@ const PostComposer = () => {
           source={{ uri: user?.imageUrl }}
           className="w-12 h-12 rounded-full mr-3"
         />
-        <View>
+        <View className="flex-1">
           <TextInput
             className="text-gray-900 text-lg"
             placeholder="What's happening?"
@@ -76,22 +75,28 @@ const PostComposer = () => {
         <View className="flex-row items-center">
           {content.length > 0 && (
             <Text
-              className={`text-sm mr-3 ${content.length > 260 ? "text-red-600" : "text-gray-600"}`}
+              className={`text-sm mr-3 ${content.length > 260 ? "text-red-500" : "text-gray-500"}`}
             >
               {280 - content.length}
             </Text>
           )}
 
           <TouchableOpacity
-            className={`px-6 py-2 rounded-full ${content.trim() || selectedImage ? "bg-blue-500" : "bg-gray-300"}`}
+            className={`px-6 py-2 rounded-full ${
+              content.trim() || selectedImage ? "bg-blue-500" : "bg-gray-300"
+            }`}
             onPress={createPost}
-            disabled={isCreating || !(content.trim() && selectedImage)}
+            disabled={isCreating || !(content.trim() || selectedImage)}
           >
             {isCreating ? (
-              <ActivityIndicator color="white" size={"small"} />
+              <ActivityIndicator size="small" color="white" />
             ) : (
               <Text
-                className={`font-semibold ${content.trim() || selectedImage ? "text-white" : "text-gray-600"}`}
+                className={`font-semibold ${
+                  content.trim() || selectedImage
+                    ? "text-white"
+                    : "text-gray-500"
+                }`}
               >
                 Post
               </Text>
@@ -102,5 +107,4 @@ const PostComposer = () => {
     </View>
   );
 };
-
 export default PostComposer;
