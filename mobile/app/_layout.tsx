@@ -5,18 +5,12 @@ import "../global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
-const CLERK_PUBLISHABLE_KEY =
-  "pk_test_c3BsZW5kaWQtcHVnLTI5LmNsZXJrLmFjY291bnRzLmRldiQ";
-
 export default function RootLayout() {
   return (
-    <ClerkProvider
-      publishableKey={CLERK_PUBLISHABLE_KEY}
-      tokenCache={tokenCache}
-    >
+    <ClerkProvider tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" />
         </Stack>
       </QueryClientProvider>
     </ClerkProvider>
