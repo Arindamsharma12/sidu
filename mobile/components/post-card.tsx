@@ -28,6 +28,10 @@ const PostCard = ({
   isLiked,
   onComment,
 }: PostCardProps) => {
+  if (!post?.user || !currentUser) {
+    // You can also return a loading spinner or a placeholder here
+    return null;
+  }
   const isOwnPost = post.user._id === currentUser._id;
 
   const handleDelete = () => {
