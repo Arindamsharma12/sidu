@@ -5,11 +5,12 @@ import SignOutButton from "@/components/sign-out-button";
 import { useUserSync } from "@/hooks/useUserSync";
 import { Ionicons } from "@expo/vector-icons";
 import PostComposer from "@/components/post-composer";
+import PostsList from "@/components/posts-list";
 
 const HomeScreen = () => {
   useUserSync();
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row justify-between items-center px-4 py-3 border-b border-gray-100">
         <Ionicons name="logo-twitter" size={24} color={"#1DA1F2"} />
         <Text className="text-xl font-bold text-gray-900">Home</Text>
@@ -22,6 +23,7 @@ const HomeScreen = () => {
         contentContainerStyle={{ paddingBottom: 80 }}
       >
         <PostComposer />
+        <PostsList />
       </ScrollView>
     </SafeAreaView>
   );
