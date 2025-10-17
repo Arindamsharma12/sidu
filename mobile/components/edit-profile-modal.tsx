@@ -43,7 +43,7 @@ const EditProfileModal = ({
       presentationStyle="pageSheet"
     >
       <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-100">
-        <TouchableOpacity onPress={close}>
+        <TouchableOpacity onPress={onClose}>
           <Text className="text-blue-500">Cancel</Text>
         </TouchableOpacity>
 
