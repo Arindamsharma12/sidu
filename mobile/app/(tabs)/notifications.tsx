@@ -27,6 +27,7 @@ const NotificationsScreen = () => {
     deleteNotification,
   } = useNotifications();
   const insets = useSafeAreaInsets();
+  // console.log("Notifications: ", JSON.stringify(notifications));
 
   if (error) {
     return (

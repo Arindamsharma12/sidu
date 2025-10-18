@@ -3,6 +3,8 @@ import React from "react";
 import { Notification } from "@/types";
 import { Feather } from "@expo/vector-icons";
 import { formatDate } from "@/utils/formatters";
+// 1. Import the Link component
+import { Link } from "expo-router"; // [Change]
 
 interface NotificationCardProps {
   notification: Notification;
@@ -55,41 +57,59 @@ const NotificationCard = ({
     );
   };
 
+  // 2. Define the profile navigation href
+  const profileHref = {
+    pathname: "/user/[username]" as const,
+    params: { username: notification.from.username },
+  }; // [Addition]
+
   return (
     <View className="border-b border-gray-700 bg-black">
       <View className="flex-row p-4">
-        <View className="relative mr-3">
-          <Image
-            source={{ uri: notification.from.profilePicture }}
-            className="size-12 rounded-full"
-          />
+        {/* 3. Wrap the avatar with the Link component */}
+        <Link href={profileHref} asChild>
+          <TouchableOpacity>
+            <View className="relative mr-3">
+              <Image
+                source={{ uri: notification.from.profilePicture }}
+                className="size-12 rounded-full"
+              />
 
-          <View className="abolute -bottom-1 -right-1 size-6 bg-black items-center justify-center">
-            {getNotificationIcon()}
-          </View>
-        </View>
+              <View className="abolute -bottom-1 -right-1 size-6 bg-black items-center justify-center">
+                {getNotificationIcon()}
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Link>
+        {/* End of new Link wrapper */}
 
         <View className="flex-1">
-          <View className="flex-row items-start justify-between mb-1">
-            <View className="flex-1">
-              <Text className="text-gray-100 text-base leading-5 mb-1">
-                <Text className="font-semibold">
-                  {notification.from.firstName} {notification.from.lastName}
-                </Text>
-                <Text className="text-gray-500">
-                  {" "}
-                  @{notification.from.username}
-                </Text>
-              </Text>
-              <Text className="text-gray-100 text-sm mb-2">
-                {getNotificationText()}
-              </Text>
-            </View>
+          {/* 4. Wrap the user's name/username block with the Link component */}
+          <Link href={profileHref} asChild>
+            <TouchableOpacity>
+              <View className="flex-row items-start justify-between mb-1">
+                <View className="flex-1">
+                  <Text className="text-gray-100 text-base leading-5 mb-1">
+                    <Text className="font-semibold">
+                      {notification.from.firstName} {notification.from.lastName}
+                    </Text>
+                    <Text className="text-gray-500">
+                      {" "}
+                      @{notification.from.username}
+                    </Text>
+                  </Text>
+                  <Text className="text-gray-100 text-sm mb-2">
+                    {getNotificationText()}
+                  </Text>
+                </View>
 
-            <TouchableOpacity className="ml-2 p-1" onPress={handleDelete}>
-              <Feather name="trash" size={16} color="#E0245E" />
+                <TouchableOpacity className="ml-2 p-1" onPress={handleDelete}>
+                  <Feather name="trash" size={16} color="#E0245E" />
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
-          </View>
+          </Link>
+          {/* End of new Link wrapper for text */}
 
           {notification.post && (
             <View className="bg-gray-800 rounded-lg p-3 mb-2">
