@@ -122,7 +122,7 @@ export const savePushToken = async (req, res) => {
 
     if (!token) return res.status(400).json({ message: "Push token required" });
 
-    await User.findByIdAndUpdate(userId, { expoPushToken: token });
+    await User.findOneAndUpdate({ clerkId: userId }, { expoPushToken: token });
     res.json({ success: true, message: "Push token saved" });
   } catch (error) {
     console.error(error);
