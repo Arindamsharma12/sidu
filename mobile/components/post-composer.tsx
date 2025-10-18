@@ -25,7 +25,7 @@ const PostComposer = () => {
   const { user } = useUser();
 
   return (
-    <View className="border-b border-gray-100 p-4 bg-white">
+    <View className="border-b border-gray-700 p-4 bg-black">
       <View className="flex-row">
         <Image
           source={{ uri: user?.imageUrl }}
@@ -33,7 +33,7 @@ const PostComposer = () => {
         />
         <View className="flex-1">
           <TextInput
-            className="text-gray-900 text-lg"
+            className="text-white text-lg"
             placeholder="What's happening?"
             placeholderTextColor="#657786"
             multiline

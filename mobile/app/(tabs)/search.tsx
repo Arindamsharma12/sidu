@@ -19,32 +19,32 @@ const TRENDING_TOPICS = [
 
 const SearchScreen = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-black">
       {/* HEADER */}
-      <View className="py-3 px-4 border-b border-gray-100 ">
-        <View className="flex-row items-center bg-gray-100 rounded-full px-4 py-3">
+      <View className="py-3 px-4 border-b border-gray-700 ">
+        <View className="flex-row items-center bg-gray-800 rounded-full px-4 py-3">
           <Feather name="search" size={20} color="#657786" />
           <TextInput
             placeholder="Search Twitter"
-            className="flex-1 ml-3 text-base"
+            className="flex-1 ml-3 text-base text-white"
             placeholderTextColor={"#657786"}
           />
         </View>
       </View>
       <ScrollView className="flex-1">
         <View className="p-4">
-          <Text className="text-xl font-bold text-gray-900 mb-4">
+          <Text className="text-xl font-bold text-gray-100 mb-4">
             Trending for you
           </Text>
           {TRENDING_TOPICS.map((item, index) => (
             <TouchableOpacity
               key={index}
-              className="py-3 border-b border-gray-100"
+              className="py-3 border-b border-gray-700"
             >
               <Text className="text-gray-500 text-sm">
                 Trending in Technology
               </Text>
-              <Text className="font-bold text-gray-900 text-lg">
+              <Text className="font-bold text-gray-100 text-lg">
                 {item.topic}
               </Text>
               <Text className="text-gray-500 text-sm">{item.tweets}</Text>

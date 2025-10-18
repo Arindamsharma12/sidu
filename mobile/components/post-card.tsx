@@ -3,7 +3,7 @@ import React from "react";
 import { Post, User } from "@/types";
 import { formatDate, formatNumber } from "@/utils/formatters";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { Link } from "expo-router"; // 1. Import Link from expo-router
+import { Link } from "expo-router";
 
 interface PostCardProps {
   post: Post;
@@ -38,17 +38,17 @@ const PostCard = ({
     ]);
   };
 
+  const profileHref = isOwnPost
+    ? "/profile"
+    : {
+        pathname: "/user/[username]" as const,
+        params: { username: post.user.username },
+      };
+
   return (
-    <View className="border-b border-gray-100 bg-white">
+    <View className="border-b border-gray-700 bg-black">
       <View className="flex-row p-4">
-        {/* 2. Wrap the profile picture with a Link */}
-        <Link
-          href={{
-            pathname: "/user/[username]",
-            params: { username: post.user.username },
-          }}
-          asChild
-        >
+        <Link href={profileHref} asChild>
           <TouchableOpacity>
             <Image
               source={{ uri: post.user.profilePicture || "" }}
@@ -59,17 +59,10 @@ const PostCard = ({
 
         <View className="flex-1">
           <View className="flex-row items-center justify-between mb-1">
-            {/* 3. Wrap the user's name and info with a Link */}
-            <Link
-              href={{
-                pathname: "/user/[username]",
-                params: { username: post.user.username },
-              }}
-              asChild
-            >
+            <Link href={profileHref} asChild>
               <TouchableOpacity>
                 <View className="flex-row items-center">
-                  <Text className="font-bold text-gray-900 mr-1">
+                  <Text className="font-bold text-gray-200 mr-1">
                     {post.user.firstName} {post.user.lastName}
                   </Text>
                   <Text className="text-gray-500 ml-1">
@@ -86,7 +79,7 @@ const PostCard = ({
           </View>
 
           {post.content && (
-            <Text className="text-gray-900 text-base leading-5 mb-3">
+            <Text className="text-white text-base leading-5 mb-3">
               {post.content}
             </Text>
           )}

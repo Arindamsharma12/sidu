@@ -1,8 +1,10 @@
 import express from "express";
 import {
+  deletePushToken,
   followUser,
   getCurrentUser,
   getUserProfile,
+  savePushToken,
   syncUser,
   updateProfile,
 } from "../controllers/user.controller.js";
@@ -17,5 +19,7 @@ router.post("/sync", protectRoute, syncUser);
 router.get("/me", protectRoute, getCurrentUser);
 router.put("/profile", protectRoute, updateProfile);
 router.post("/follow/:targetUserId", protectRoute, followUser);
+router.post("/save-push-token", protectRoute, savePushToken);
+router.delete("/remove-push-token", protectRoute, deletePushToken);
 
 export default router;
