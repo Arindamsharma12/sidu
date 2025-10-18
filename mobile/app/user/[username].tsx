@@ -84,7 +84,7 @@ const UserProfileScreen = () => {
   const isOwnProfile = currentUser._id === userProfile._id;
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-black" edges={["top"]}>
       <Stack.Screen
         options={{
           headerTitle: `${userProfile.firstName} ${userProfile.lastName}`,
@@ -116,11 +116,11 @@ const UserProfileScreen = () => {
           className="w-full h-48"
           resizeMode="cover"
         />
-        <View className="px-4 pb-4 border-b border-gray-100 ">
+        <View className="px-4 pb-4 border-b border-gray-700 ">
           <View className="flex-row justify-between items-end -mt-16 mb-4">
             <Image
               source={{ uri: userProfile.profilePicture }}
-              className="w-32 h-32 rounded-full border-4 border-white"
+              className="w-32 h-32 rounded-full border-4 border-black"
             />
             {/* Conditionally render the button */}
             {!isOwnProfile && (
@@ -155,13 +155,13 @@ const UserProfileScreen = () => {
 
           <View className="mb-4">
             <View className="flex-row items-center mb-1">
-              <Text className="text-xl font-bold text-gray-900 mr-1">
+              <Text className="text-xl font-bold text-gray-100 mr-1">
                 {userProfile.firstName} {userProfile.lastName}
               </Text>
               <Feather name="check-circle" size={20} color={"#1DA1F2"} />
             </View>
             <Text className="text-gray-500 mb-2">@{userProfile.username}</Text>
-            <Text className="text-gray-900 mb-3">{userProfile.bio}</Text>
+            <Text className="text-gray-500 mb-3">{userProfile.bio}</Text>
 
             <View className="flex-row items-center mb-2">
               <Feather name="map-pin" size={16} color="#657786" />
@@ -171,14 +171,13 @@ const UserProfileScreen = () => {
             <View className="flex-row items-center mb-3">
               <Feather name="calendar" size={16} color={"#657786"} />
               <Text className="text-gray-500 ml-2">
-                Joined
-                {format(new Date(userProfile.createdAt), "MMMM yyyy")}
+                Joined {format(new Date(userProfile.createdAt), "MMMM yyyy")}
               </Text>
             </View>
 
             <View className="flex-row">
               <TouchableOpacity className="mr-6">
-                <Text className="text-gray-900">
+                <Text className="text-gray-100">
                   <Text className="font-bold">
                     {userProfile.following?.length ?? 0}
                   </Text>
@@ -186,7 +185,7 @@ const UserProfileScreen = () => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity>
-                <Text className="text-gray-900">
+                <Text className="text-gray-100">
                   <Text className="font-bold">
                     {userProfile.followers?.length ?? 0}
                   </Text>

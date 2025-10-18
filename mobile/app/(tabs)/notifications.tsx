@@ -43,10 +43,10 @@ const NotificationsScreen = () => {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-black" edges={["top"]}>
       {/* Header */}
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-100">
-        <Text className="text-xl font-bold text-gray-900">Notifications</Text>
+      <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-700">
+        <Text className="text-xl font-bold text-gray-100">Notifications</Text>
         <TouchableOpacity>
           <Feather name="settings" size={24} color="#657786" />
         </TouchableOpacity>

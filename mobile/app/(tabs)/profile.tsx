@@ -49,11 +49,11 @@ const ProfileScreens = () => {
     );
   }
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-black" edges={["top"]}>
       {/* Header */}
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-100">
+      <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-700">
         <View>
-          <Text className="text-xl font-bold text-gray-900">
+          <Text className="text-xl font-bold text-white">
             {currentUser.firstName} {currentUser.lastName}
           </Text>
           <Text className="text-gray-500 text-sm">
@@ -87,29 +87,29 @@ const ProfileScreens = () => {
           className="w-full h-48"
           resizeMode="cover"
         />
-        <View className="px-4 pb-4 border-b border-gray-100 ">
+        <View className="px-4 pb-4 border-b border-gray-700 ">
           <View className="flex-row justify-between items-end -mt-16 mb-4">
             <Image
               source={{ uri: currentUser.profilePicture }}
-              className="w-32 h-32 rounded-full border-4 border-white"
+              className="w-32 h-32 rounded-full border-4 border-black"
             />
             <TouchableOpacity
               className="border border-gray-300 px-6 py-2 rounded-full"
               onPress={openEditModal}
             >
-              <Text className="font-semibold text-gray-900">Edit profile</Text>
+              <Text className="font-semibold text-gray-100">Edit profile</Text>
             </TouchableOpacity>
           </View>
 
           <View className="mb-4">
             <View className="flex-row items-center mb-1">
-              <Text className="text-xl font-bold text-gray-900 mr-1">
+              <Text className="text-xl font-bold text-gray-100 mr-1">
                 {currentUser.firstName} {currentUser.lastName}
               </Text>
               <Feather name="check-circle" size={20} color={"#1DA1F2"} />
             </View>
             <Text className="text-gray-500 mb-2">@{currentUser.username}</Text>
-            <Text className="text-gray-900 mb-3">{currentUser.bio}</Text>
+            <Text className="text-gray-500 mb-3">{currentUser.bio}</Text>
 
             <View className="flex-row items-center mb-2">
               <Feather name="map-pin" size={16} color="#657786" />
@@ -126,7 +126,7 @@ const ProfileScreens = () => {
 
             <View className="flex-row">
               <TouchableOpacity className="mr-6">
-                <Text className="text-gray-900">
+                <Text className="text-gray-100">
                   <Text className="font-bold">
                     {currentUser.following?.length}
                   </Text>
@@ -134,7 +134,7 @@ const ProfileScreens = () => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity>
-                <Text className="text-gray-900">
+                <Text className="text-gray-100">
                   <Text className="font-bold">
                     {currentUser.followers?.length}
                   </Text>

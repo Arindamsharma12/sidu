@@ -99,9 +99,44 @@ export const followUser = asyncHandler(async (req, res) => {
     });
   }
 
+  if (targetUser.expoPushToken) {
+    await sendPushNotification(
+      targetUser.expoPushToken,
+      "New Follower",
+      `${currentUser.username} started following you.`,
+      { type: "follow", fromUser: userId }
+    );
+  }
+
   res.status(200).json({
     message: isFollowing
       ? "User unfollowed successfully"
       : "User followed successfully",
   });
 });
+
+export const savePushToken = async (req, res) => {
+  try {
+    const { userId } = getAuth(req);
+    const { token } = req.body;
+
+    if (!token) return res.status(400).json({ message: "Push token required" });
+
+    await User.findByIdAndUpdate(userId, { expoPushToken: token });
+    res.json({ success: true, message: "Push token saved" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const deletePushToken = async (req, res) => {
+  try {
+    const { userId } = getAuth(req);
+    await User.findByIdAndUpdate(userId, { expoPushToken: null });
+    res.json({ success: true, message: "Push token removed" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

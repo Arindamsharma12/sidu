@@ -56,7 +56,7 @@ const NotificationCard = ({
   };
 
   return (
-    <View className="border-b border-gray-100 bg-white">
+    <View className="border-b border-gray-700 bg-black">
       <View className="flex-row p-4">
         <View className="relative mr-3">
           <Image
@@ -64,7 +64,7 @@ const NotificationCard = ({
             className="size-12 rounded-full"
           />
 
-          <View className="abolute -bottom-1 -right-1 size-6 bg-white items-center justify-center">
+          <View className="abolute -bottom-1 -right-1 size-6 bg-black items-center justify-center">
             {getNotificationIcon()}
           </View>
         </View>
@@ -72,7 +72,7 @@ const NotificationCard = ({
         <View className="flex-1">
           <View className="flex-row items-start justify-between mb-1">
             <View className="flex-1">
-              <Text className="text-gray-900 text-base leading-5 mb-1">
+              <Text className="text-gray-100 text-base leading-5 mb-1">
                 <Text className="font-semibold">
                   {notification.from.firstName} {notification.from.lastName}
                 </Text>
@@ -81,7 +81,7 @@ const NotificationCard = ({
                   @{notification.from.username}
                 </Text>
               </Text>
-              <Text className="text-gray-700 text-sm mb-2">
+              <Text className="text-gray-100 text-sm mb-2">
                 {getNotificationText()}
               </Text>
             </View>
@@ -92,8 +92,8 @@ const NotificationCard = ({
           </View>
 
           {notification.post && (
-            <View className="bg-gray-50 rounded-lg p-3 mb-2">
-              <Text className="text-gray-700 text-sm mb-1" numberOfLines={3}>
+            <View className="bg-gray-800 rounded-lg p-3 mb-2">
+              <Text className="text-gray-100 text-sm mb-1" numberOfLines={3}>
                 {notification.post.content}
               </Text>
               {notification.post.image && (
@@ -107,9 +107,9 @@ const NotificationCard = ({
           )}
 
           {notification.comment && (
-            <View className="bg-blue-50 rounded-lg p-3 mb-2">
-              <Text className="text-gray-600 text-xs mb-1">Comment:</Text>
-              <Text className="text-gray-700 text-sm" numberOfLines={2}>
+            <View className="bg-gray-800 rounded-lg p-3 mb-2">
+              <Text className="text-gray-300 text-xs mb-1">Comment:</Text>
+              <Text className="text-gray-100 text-sm" numberOfLines={2}>
                 &ldquo;{notification.comment.content}&rdquo;
               </Text>
             </View>
